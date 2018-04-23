@@ -327,12 +327,16 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__nyc_game_final_dialog_final_dialog_component__ = __webpack_require__("../../../../../src/app/nyc/game/final-dialog/final-dialog.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__av_av_game_component__ = __webpack_require__("../../../../../src/app/av/av-game.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__av_av_game_service__ = __webpack_require__("../../../../../src/app/av/av-game.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__av_transcript_av_transcript_component__ = __webpack_require__("../../../../../src/app/av-transcript/av-transcript.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__complete_av_complete_av_component__ = __webpack_require__("../../../../../src/app/complete-av/complete-av.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -384,7 +388,9 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_25__nyc_game_nyc_game_component__["a" /* NYCComponent */],
                 __WEBPACK_IMPORTED_MODULE_26__nyc_game_explanationDialog_explanation_dialog_component__["a" /* ExplanationDialog */],
                 __WEBPACK_IMPORTED_MODULE_27__nyc_game_final_dialog_final_dialog_component__["a" /* FinalDialog */],
-                __WEBPACK_IMPORTED_MODULE_28__av_av_game_component__["a" /* AVDialogComponent */]
+                __WEBPACK_IMPORTED_MODULE_28__av_av_game_component__["a" /* AVDialogComponent */],
+                __WEBPACK_IMPORTED_MODULE_30__av_transcript_av_transcript_component__["a" /* AVTranscriptComponent */],
+                __WEBPACK_IMPORTED_MODULE_31__complete_av_complete_av_component__["a" /* CompleteAVActivityDialogComponent */]
             ],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_13__simulated_meeting_panelist_dialog_panelist_dialog_component__["a" /* PanelistDialogComponent */],
@@ -395,7 +401,9 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_20__complete_activity_complete_activity_component__["a" /* CompleteActivityDialogComponent */],
                 __WEBPACK_IMPORTED_MODULE_26__nyc_game_explanationDialog_explanation_dialog_component__["a" /* ExplanationDialog */],
                 __WEBPACK_IMPORTED_MODULE_23__nyc_game_transcript_nyc_transcript_component__["a" /* NYCTranscriptComponent */],
-                __WEBPACK_IMPORTED_MODULE_27__nyc_game_final_dialog_final_dialog_component__["a" /* FinalDialog */]
+                __WEBPACK_IMPORTED_MODULE_27__nyc_game_final_dialog_final_dialog_component__["a" /* FinalDialog */],
+                __WEBPACK_IMPORTED_MODULE_30__av_transcript_av_transcript_component__["a" /* AVTranscriptComponent */],
+                __WEBPACK_IMPORTED_MODULE_31__complete_av_complete_av_component__["a" /* CompleteAVActivityDialogComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_9__app_routing_module__["a" /* AppRoutingModule */],
@@ -417,6 +425,84 @@ var AppModule = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/av-transcript/av-transcript.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.dialog {\n  min-height: 50px;\n  text-align: left;\n  /* width: inherit; */\n  border-radius: 5px;\n  border: solid;\n  border-width: 1px;\n  margin-top: 5px;\n  margin-bottom: 15px;\n  box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.2), 0 1px 0px 0 rgba(0, 0, 0, 0.19);\n  position: relative;\n  border-color: #0D3055;\n}\n\n.dialog-committee {\n  min-height: 50px;\n  text-align: left;\n  /* width: inherit; */\n  border-radius: 5px;\n  border: solid;\n  border-width: 1px;\n  margin-top: 5px;\n  margin-bottom: 15px;\n  box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.2), 0 1px 0px 0 rgba(0, 0, 0, 0.19);\n  position: relative;\n  border-color: #EFB211;\n}\n.image {\n  height: 40px;\n  width: 40px;\n}\n\n.info-icon {\n  position: absolute;\n  right: 10px;\n  top: 6px;\n  width: 15px;\n  height: 15px;\n}\n\n.info-icon:hover {\n  cursor: pointer;\n}\n\n.dialog-content-transcript {\n  padding-right:12px;\n}\n\n.sub-heading {\n  font-size:12px;font-weight:300;\n}\n\n.sub-heading-icon{\n  width:12px;\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/av-transcript/av-transcript.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div>\n  <img class=\"close\" (click)=\"onNoClick()\" src=\"../../assets/multiply.png\">\n</div>\n<h2 mat-dialog-title>Annotated Vita Transcript</h2>\n<hr>\n\n<mat-dialog-content>\n  <div>\n    <div class=\"row\" *ngFor=\"let dialog of conversation\">\n\n      <div class=\"col-md-1\">\n        <img [src]=\"constructImageName(dialog.speakerName)\" class=\"image\">\n      </div>\n      <div  class=\"col-md-10 dialog\">\n        <p class=\"dialog-content-transcript\">{{dialog.text}}</p>\n\n      </div>\n    </div>\n  </div>\n</mat-dialog-content>\n\n\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/av-transcript/av-transcript.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AVTranscriptComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__ = __webpack_require__("../../../material/esm5/dialog.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+var AVTranscriptComponent = (function () {
+    function AVTranscriptComponent(dialogRef, data, router, route) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.router = router;
+        this.route = route;
+    }
+    AVTranscriptComponent.prototype.onNoClick = function () {
+        this.router.navigate(['/activity']);
+        this.dialogRef.close();
+    };
+    AVTranscriptComponent.prototype.constructImageName = function (imageName) {
+        return "../../assets/av/" + imageName + "_small.png";
+    };
+    AVTranscriptComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'av-transcript',
+            template: __webpack_require__("../../../../../src/app/av-transcript/av-transcript.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/av-transcript/av-transcript.component.css")]
+        }),
+        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])(__WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["d" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]])
+    ], AVTranscriptComponent);
+    return AVTranscriptComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/av/av-dialog.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -425,7 +511,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".main-page {\n  font-size: 16px;\n  min-height: 100%;\n}\n\n.main-page .header {\n  font-size: 20px;\n  font-weight: 700;\n  margin-top: 20px;\n}\n\n.main-page .candidate-name {\n  font-size: 16px;\n  font-weight: 700;\n  margin-top: 5px;\n  margin-bottom: 6px;\n}\n\n.main-page .candidate-short-desc {\n  font-size: 12px;\n  margin-top: 3px;\n  padding-bottom: 5px;\n}\n\n.right-panel {\n  max-width: 889px;\n  margin-left: 20px;\n  margin-top: 15px;\n  min-height: 100%;\n}\n\n.activity-instruction {\n  font-size: 20px;\n}\n\n.choose-candidate-card {\n  margin-top: 12px;\n  background-color: #F5F5F5;\n  border-style: solid;\n  border-width: 13px;\n  border-color: white;\n\n}\n\n.cv-card {\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n  transition: all 200ms ease-out;\n  width: 100%;\n}\n\n.cv-card:hover {\n  box-shadow: 0 0 10px #EFB211;\n  cursor: pointer;\n}\n\n.candidate-card {\n  margin-top: 10px;\n  background-color: #F5F5F5;\n  padding-top: 10px;\n  padding-bottom: 15px;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n  transition: all 200ms ease-out;\n}\n\n.other-panelists {\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n  transition: all 200ms ease-out;\n}\n\n.other-panelists:hover {\n  box-shadow: 0 0 10px #EFB211;\n  cursor: pointer;\n}\n\n.selected {\n  box-shadow: 0 0 10px #EFB211;\n}\n\n.choose-candidates {\n  margin-top: -15px;\n}\n\n.candidate-img {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  height: 80px;\n  width: 80px;\n}\n\n.details-case {\n  background-color: #F5F5F5;\n  margin-top: -30px;\n\n}\n\n.view-details-left {\n  background-color: white;\n  font-size: 8px;\n  margin-left: 15px;\n  margin-right: 15px;\n  padding-left: 0px;\n  padding-right: 0px;\n  margin-top: 12px;\n}\n\n.view-details {\n  background-color: white;\n  margin-top: 18px;\n  font-size: 12px;\n  margin-left: 48px;\n  padding-left: 0px;\n  padding-right: 0px;\n  transition: all 200ms ease-out;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n}\n\n.view-details:hover {\n  box-shadow: 0 0 10px #EFB211;\n  cursor: pointer;\n}\n\n.button-blue {\n  color: white;\n  font-size: 16px;\n  background-color: #0D3055;\n  margin-top: 10px;\n  text-align: center;\n}\n\n.truncate {\n  padding-left: 25px;\n  padding-right: 25px;\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n  margin-bottom: 18px;\n  margin-top: 18px;\n}\n\n.logo {\n  display: block;\n  margin: auto;\n}\n\n.left-panel {\n  box-shadow: 0 4px 8px 0 rgba(164, 164, 164, 0.51), 0 6px 20px 0 rgba(164, 164, 164, 0.5);\n  padding-top: 20px;\n  position: relative;\n  height: 100%;\n  height: -moz-available;          /* WebKit-based browsers will ignore this. */\n  height: -webkit-stretch;  /* Mozilla-based browsers will ignore this. */\n  height: -webkit-fill-available;\n  height: stretch;\n}\n\n.back-to-main-page {\n  font-size: 16px;\n  font-weight: 400;\n  border-width: 1px;\n  border-color: black;\n  background-color: white;\n  border-radius: 0;\n  margin-bottom: 10px;\n  width: 100%;\n\n}\n\n.read-about-fellows {\n  margin-left: 15px;\n}\n\n.panelist-name {\n  margin-top: 34px;\n  font-size: 16px;\n  font-weight: 700;\n  margin-left: 10px;\n}\n\n.other-panelists {\n  background-color: white;\n  margin-left: 5px;\n  margin-right: 5px;\n  margin-top: 10px;\n  margin-bottom: 20px;\n}\n\n.play-game {\n  margin-top: 10px;\n  font-weight: 700;\n  background-color: #0D3055;\n  color: #ffffff;\n  text-transform: uppercase;\n  font-size: 16px;\n  border-radius: 5px;\n  height: 34px; /* Safari */\n  transition-duration: 0.4s;\n  float: right;\n  margin-bottom: 10px;\n}\n\n.submit {\n  font-weight: 700;\n  background-color: #0D3055;\n  color: #ffffff;\n  text-transform: uppercase;\n  font-size: 16px;\n  border-radius: 5px; /* Safari */\n  transition-duration: 0.4s;\n}\n\n.submit:hover {\n  background-color: #EFB211; /* Green */\n  color: white;\n  cursor: pointer;\n}\n\n.play-game:hover {\n  background-color: #EFB211; /* Green */\n  color: white;\n  cursor: pointer;\n}\n\n.shadow {\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n}\n\n.control-button {\n  float: right;\n  background-color: #0D3055;\n  height: 40px;\n\n}\n\n.control-button:hover {\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n}\n\n.control-panel {\n  height: 50px;\n  margin-top: 20px;\n  margin-bottom: 20px;\n  padding: 5px;\n}\n\n.progress-bar-container {\n  padding: 8px 2px 13px 2px;\n  height: 20px;\n  margin-bottom: 15px;\n  width: 100%;\n  background-color: #f5f5f5;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n}\n\n.panel-dialog {\n  position: absolute;\n  top: 11%;\n  left: 8%;\n  font-size: 16px;\n  width: 87%;\n}\n\n.transcript {\n  font-size: 20px;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  color: white;\n}\n\n.logo:hover {\n  cursor: pointer;\n}\n\n.back-to-main-page:hover {\n  cursor: pointer;\n}\n\n.left-panel-container {\n  width: 100%;\n  min-height: 640px;\n}\n\n.left-panel-child {\n  margin-left: 30px;\n  margin-right: 20px;\n}\n\n.hr-style {\n  margin-top: 20px;\n}\n\n.candidate-profile-header {\n  margin-top: 10px;\n  text-align: center;\n  font-weight: 700;\n}\n\n.candidate-image {\n  padding-left: 15px;\n  width: 100px;\n}\n\n.cv-heading {\n  background-color: #0D3055;\n  width: 100%;\n  padding-left: 10px;\n}\n\n.cv-heading-text {\n  color: white;\n  font-size: 16px;\n  text-align: center;\n}\n\n.cv-snippet {\n  margin-top: 18px;\n}\n\n.case-study-heading {\n  background-color: #EFB211;\n  width: 100%;\n  padding-left: 10px;\n}\n\n.case-study-heading-text {\n  color: white;\n  font-size: 16px;\n  text-align: center;\n}\n\n.exit-activity-container {\n  color: black;\n  text-align: center;\n}\n\n.exit-activity-icon {\n  width: 24px;\n  height: 24px;\n}\n\n.panelist-image {\n  width: 100%;\n  position: relative\n}\n\n.arrow-right {\n  padding: 5px;\n  width: 24px;\n}\n\n.arrow-left {\n  padding: 5px;\n  width: 24px;\n}\n\n.options-container {\n  height: 35%;\n  background-color: #F6F6F6;\n  margin-top: 20px;\n  margin-bottom: 20px;\n  display: block;\n  -webkit-box-align: end;\n      -ms-flex-align: end;\n          align-items: flex-end;\n  padding-top: 2px;\n  padding-left: 10px;\n}\n\n.options-container-text {\n  font-size: 17px;\n  font-weight: 700;\n  margin-bottom: 10px;\n  margin-top: 10px;\n}\n\n.submit-button-container {\n  margin-top: 5px;\n  margin-bottom: 15px;\n}\n\n.transcript-button {\n  width: auto;\n  height: auto;\n  background-color: #0D3055;\n  cursor: pointer;\n}\n\n.error {\n  margin-top: 10px;\n}\n\n.warning-icon {\n  width: 16px;\n}\n\n::-webkit-scrollbar {\n  -webkit-appearance: none;\n  width: 10px;\n}\n\n::-webkit-scrollbar-thumb {\n  border-radius: 5px;\n  background-color: rgba(0, 0, 0, .5);\n  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);\n}\n", ""]);
+exports.push([module.i, ".main-page {\n  font-size: 16px;\n  min-height: 100%;\n}\n\n.main-page .header {\n  font-size: 20px;\n  font-weight: 700;\n  margin-top: 20px;\n}\n\n.main-page .candidate-name {\n  font-size: 16px;\n  font-weight: 700;\n  margin-top: 5px;\n  margin-bottom: 6px;\n}\n\n.main-page .candidate-short-desc {\n  font-size: 12px;\n  margin-top: 3px;\n  padding-bottom: 5px;\n}\n\n.right-panel {\n  max-width: 889px;\n  margin-left: 20px;\n  margin-top: auto;\n  margin-bottom:auto;\n  min-height: 100%;\n}\n\n.activity-instruction {\n  font-size: 20px;\n}\n\n.choose-candidate-card {\n  margin-top: 12px;\n  background-color: #F5F5F5;\n  border-style: solid;\n  border-width: 13px;\n  border-color: white;\n\n}\n\n.cv-card {\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n  transition: all 200ms ease-out;\n  width: 100%;\n}\n\n.cv-card:hover {\n  box-shadow: 0 0 10px #EFB211;\n  cursor: pointer;\n}\n\n.candidate-card {\n  margin-top: 10px;\n  background-color: #F5F5F5;\n  padding-top: 10px;\n  padding-bottom: 15px;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n  transition: all 200ms ease-out;\n}\n\n.other-panelists {\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n  transition: all 200ms ease-out;\n}\n\n.other-panelists:hover {\n  box-shadow: 0 0 10px #EFB211;\n  cursor: pointer;\n}\n\n.selected {\n  box-shadow: 0 0 10px #EFB211;\n}\n\n.choose-candidates {\n  margin-top: -15px;\n}\n\n.candidate-img {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  height: 80px;\n  width: 80px;\n}\n\n.details-case {\n  background-color: #F5F5F5;\n  margin-top: -30px;\n\n}\n\n.view-details-left {\n  background-color: white;\n  font-size: 8px;\n  margin-left: 15px;\n  margin-right: 15px;\n  padding-left: 0px;\n  padding-right: 0px;\n  margin-top: 12px;\n}\n\n.view-details {\n  background-color: white;\n  margin-top: 18px;\n  font-size: 12px;\n  margin-left: 48px;\n  padding-left: 0px;\n  padding-right: 0px;\n  transition: all 200ms ease-out;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n}\n\n.view-details:hover {\n  box-shadow: 0 0 10px #EFB211;\n  cursor: pointer;\n}\n\n.button-blue {\n  color: white;\n  font-size: 16px;\n  background-color: #0D3055;\n  margin-top: 10px;\n  text-align: center;\n}\n\n.truncate {\n  padding-left: 25px;\n  padding-right: 25px;\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n  margin-bottom: 18px;\n  margin-top: 18px;\n}\n\n.logo {\n  display: block;\n  margin: auto;\n}\n\n.left-panel {\n  box-shadow: 0 4px 8px 0 rgba(164, 164, 164, 0.51), 0 6px 20px 0 rgba(164, 164, 164, 0.5);\n  padding-top: 20px;\n  position: relative;\n  height: 100%;\n  height: -moz-available; /* WebKit-based browsers will ignore this. */\n  height: -webkit-stretch; /* Mozilla-based browsers will ignore this. */\n  height: -webkit-fill-available;\n  height: stretch;\n}\n\n.back-to-main-page {\n  font-size: 16px;\n  font-weight: 400;\n  border-width: 1px;\n  border-color: black;\n  background-color: white;\n  border-radius: 0;\n  margin-bottom: 10px;\n  width: 100%;\n\n}\n\n.read-about-fellows {\n  margin-left: 15px;\n}\n\n.panelist-name {\n  margin-top: 34px;\n  font-size: 16px;\n  font-weight: 700;\n  margin-left: 10px;\n}\n\n.other-panelists {\n  background-color: white;\n  margin-left: 5px;\n  margin-right: 5px;\n  margin-top: 10px;\n  margin-bottom: 20px;\n}\n\n.play-game {\n  margin-top: 10px;\n  font-weight: 700;\n  background-color: #0D3055;\n  color: #ffffff;\n  text-transform: uppercase;\n  font-size: 16px;\n  border-radius: 5px;\n  height: 34px; /* Safari */\n  transition-duration: 0.4s;\n  float: right;\n  margin-bottom: 10px;\n}\n\n.submit {\n  font-weight: 700;\n  background-color: #0D3055;\n  color: #ffffff;\n  text-transform: uppercase;\n  font-size: 16px;\n  border-radius: 5px; /* Safari */\n  transition-duration: 0.4s;\n}\n\n.submit:hover {\n  background-color: #EFB211; /* Green */\n  color: white;\n  cursor: pointer;\n}\n\n.play-game:hover {\n  background-color: #EFB211; /* Green */\n  color: white;\n  cursor: pointer;\n}\n\n.shadow {\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n}\n\n.control-button {\n  float: right;\n  background-color: #0D3055;\n  height: 40px;\n\n}\n\n.control-button:hover {\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n}\n\n.control-panel {\n  height: 50px;\n  margin-top: 20px;\n  margin-bottom: 20px;\n  padding: 5px;\n}\n\n.progress-bar-container {\n  padding: 8px 2px 13px 2px;\n  height: 20px;\n  margin-bottom: 15px;\n  width: 100%;\n  background-color: #f5f5f5;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n}\n\n.panel-dialog {\n  position: absolute;\n  top: 11%;\n  left: 8%;\n  font-size: 16px;\n  width: 87%;\n}\n\n.transcript {\n  font-size: 20px;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  color: white;\n}\n\n.logo:hover {\n  cursor: pointer;\n}\n\n.back-to-main-page:hover {\n  cursor: pointer;\n}\n\n.left-panel-container {\n  width: 100%;\n  min-height: 640px;\n}\n\n.left-panel-child {\n  margin-left: 30px;\n  margin-right: 20px;\n}\n\n.hr-style {\n  margin-top: 20px;\n}\n\n.candidate-profile-header {\n  margin-top: 10px;\n  text-align: center;\n  font-weight: 700;\n}\n\n.candidate-image {\n  padding-left: 15px;\n  width: 100px;\n}\n\n.cv-heading {\n  background-color: #0D3055;\n  width: 100%;\n  padding-left: 10px;\n}\n\n.cv-heading-text {\n  color: white;\n  font-size: 16px;\n  text-align: center;\n}\n\n.cv-snippet {\n  margin-top: 18px;\n}\n\n.case-study-heading {\n  background-color: #EFB211;\n  width: 100%;\n  padding-left: 10px;\n}\n\n.case-study-heading-text {\n  color: white;\n  font-size: 16px;\n  text-align: center;\n}\n\n.exit-activity-container {\n  color: black;\n  text-align: center;\n}\n\n.exit-activity-icon {\n  width: 24px;\n  height: 24px;\n}\n\n.panelist-image {\n  width: 100%;\n  position: relative\n}\n\n.arrow-right {\n  padding: 5px;\n  width: 24px;\n}\n\n.arrow-left {\n  padding: 5px;\n  width: 24px;\n}\n\n.options-container {\n  height: 35%;\n  background-color: #F6F6F6;\n  margin-top: 20px;\n  margin-bottom: 20px;\n  display: block;\n  -webkit-box-align: end;\n      -ms-flex-align: end;\n          align-items: flex-end;\n  padding-top: 2px;\n  padding-left: 10px;\n}\n\n.options-container-text {\n  font-size: 17px;\n  font-weight: 700;\n  margin-bottom: 10px;\n  margin-top: 10px;\n}\n\n.submit-button-container {\n  margin-top: 5px;\n  margin-bottom: 15px;\n}\n\n.transcript-button {\n  width: auto;\n  height: auto;\n  background-color: #0D3055;\n  cursor: pointer;\n}\n\n.error {\n  margin-top: 10px;\n}\n\n.warning-icon {\n  width: 16px;\n}\n\n::-webkit-scrollbar {\n  -webkit-appearance: none;\n  width: 10px;\n}\n\n::-webkit-scrollbar-thumb {\n  border-radius: 5px;\n  background-color: rgba(0, 0, 0, .5);\n  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);\n}\n\n.open-dialog {\n  float: right;\n  padding-bottom: 10px;\n  padding-right: 10px;\n  font-size: 13px;\n}\n\n.coffee-shop {\n  height: 550px;\n  position: relative\n}\n\n.coffee-shop-dialog {\n  position: absolute;\n  top: 10.5%;\n  left: 14%;\n  right: 20%;\n}\n\n.conversation-right-panel {\n  height: 550px;\n  background: #F6F6F6;\n  font-size: 16px;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n}\n\n.conversation-bullets {\n  overflow: scroll;\n  max-height: 500px;\n  list-style-type: none;\n  margin-top: 30px;\n  padding-left: 0px;\n}\n", ""]);
 
 // exports
 
@@ -458,7 +544,15 @@ var AVDIALOGS = [
                 "speakerNumber": 2,
                 "speakerName": "Carl",
                 "image": "../../assets/av/carl.png",
-                "text": "Yes, it's a difficult time. I appreciate your taking time to talk with me about getting my dossier ready now to submit to the chair. These deadlines always approach so fast, with it being so close to summer.",
+                "text": "Yes, it's a difficult time. I appreciate your taking time to talk with me about getting my dossier ready now to submit to the chair.",
+                "extra": ""
+            },
+            {
+                "statementKey": "2a",
+                "speakerNumber": 2,
+                "speakerName": "Carl",
+                "image": "../../assets/av/carl.png",
+                "text": "These deadlines always approach so fast, with it being so close to summer.",
                 "extra": ""
             },
             {
@@ -466,7 +560,15 @@ var AVDIALOGS = [
                 "speakerNumber": 1,
                 "speakerName": "Tina",
                 "image": "../../assets/av/tina.png",
-                "text": "Yes. We used to turn in paperwork after the summer, when everyone had time to update the cv and write the narrative. Now, submitting a draft in the spring that goes to reviewers ensures that they have enough time to read and comment on the candidate's scholarship, even though it's a busier time of year.",
+                "text": "Yes. We used to turn in paperwork after the summer, when everyone had time to update the cv and write the narrative. ",
+                "extra": ""
+            },
+            {
+                "statementKey": "3a",
+                "speakerNumber": 1,
+                "speakerName": "Tina",
+                "image": "../../assets/av/tina.png",
+                "text": "Now, submitting a draft in the spring that goes to reviewers ensures that they have enough time to read and comment on the candidate's scholarship, even though it's a busier time of year.",
                 "extra": ""
             },
             {
@@ -498,7 +600,15 @@ var AVDIALOGS = [
                 "speakerNumber": 2,
                 "speakerName": "Carl",
                 "image": "../../assets/av/carl.png",
-                "text": "It’s been hard for me to manage research commitments and service with a four-day teaching schedule. I used to be able to excel in teaching when the old chair was more flexible with my schedule and understood all my accessibility and scheduling issues.",
+                "text": "It’s been hard for me to manage research commitments and service with a four-day teaching schedule. ",
+                "extra": ""
+            },
+            {
+                "statementKey": "7a",
+                "speakerNumber": 2,
+                "speakerName": "Carl",
+                "image": "../../assets/av/carl.png",
+                "text": "I used to be able to excel in teaching when the old chair was more flexible with my schedule and understood all my accessibility and scheduling issues.",
                 "extra": ""
             },
             {
@@ -514,7 +624,15 @@ var AVDIALOGS = [
                 "speakerNumber": 2,
                 "speakerName": "Carl",
                 "image": "../../assets/av/carl.png",
-                "text": "I know. With my disability, I can’t spend too much time sitting in my office waiting for students. I don’t think they understand how painful it is to overexert myself that way. Some students appear personally offended if I suggest that we communicate instead via email or phone.",
+                "text": "I know. With my disability, I can’t spend too much time sitting in my office waiting for students. I don’t think they understand how painful it is to overexert myself that way.",
+                "extra": ""
+            },
+            {
+                "statementKey": "9",
+                "speakerNumber": 2,
+                "speakerName": "Carl",
+                "image": "../../assets/av/carl.png",
+                "text": " Some students appear personally offended if I suggest that we communicate instead via email or phone.",
                 "extra": ""
             },
             {
@@ -530,7 +648,15 @@ var AVDIALOGS = [
                 "speakerNumber": 2,
                 "speakerName": "Carl",
                 "image": "../../assets/av/carl.png",
-                "text": "Too many times their idea of convenience is the day before the project. Over time, I’ve had to be very detailed about assignments and build in time for questions about assignments into class meetings so that everyone is on the same page all along.",
+                "text": "Too many times their idea of convenience is the day before the project.",
+                "extra": ""
+            },
+            {
+                "statementKey": "11a",
+                "speakerNumber": 2,
+                "speakerName": "Carl",
+                "image": "../../assets/av/carl.png",
+                "text": "Over time, I’ve had to be very detailed about assignments and build in time for questions about assignments into class meetings so that everyone is on the same page all along.",
                 "extra": ""
             },
             {
@@ -553,7 +679,7 @@ var AVDIALOGS = [
                 "statementKey": "14",
                 "speakerNumber": 2,
                 "speakerName": "Carl",
-                "image": "../../assets/av/carl.png",
+                "image": "../../assets/av/carl-K.png",
                 "text": "Oh, hi. No, not at all. I remember you..Katie? Is that right? This is my colleague, Dr. Androtti.",
                 "extra": ""
             },
@@ -569,7 +695,7 @@ var AVDIALOGS = [
                 "statementKey": "16",
                 "speakerNumber": 2,
                 "speakerName": "Carl",
-                "image": "../../assets/av/carl.png",
+                "image": "../../assets/av/carl-K.png",
                 "text": "That's great to hear. Sometimes I think the students only show up to get credit for attending.",
                 "extra": ""
             },
@@ -585,7 +711,7 @@ var AVDIALOGS = [
                 "statementKey": "18",
                 "speakerNumber": 1,
                 "speakerName": "Tina",
-                "image": "../../assets/av/tina.png",
+                "image": "../../assets/av/tina-K.png",
                 "text": "Sounds like it was a good experience. If you don't mind me asking, why did you enjoy the class?",
                 "extra": ""
             },
@@ -594,14 +720,22 @@ var AVDIALOGS = [
                 "speakerNumber": 3,
                 "speakerName": "Katie",
                 "image": "../../assets/av/katie.png",
-                "text": "Well, let me think. The material itself was already interesting. And Dr. Anders was enthusiastic about teaching the material. He was also patient when students asked questions. I gotta go, Dr. Anders, but it was good seeing you again.",
+                "text": "Well, let me think. The material itself was already interesting. And Dr. Anders was enthusiastic about teaching the material. He was also patient when students asked questions. ",
+                "extra": ""
+            },
+            {
+                "statementKey": "19a",
+                "speakerNumber": 3,
+                "speakerName": "Katie",
+                "image": "../../assets/av/katie.png",
+                "text": "I gotta go, Dr. Anders, but it was good seeing you again.",
                 "extra": ""
             },
             {
                 "statementKey": "20",
                 "speakerNumber": 2,
                 "speakerName": "Carl",
-                "image": "../../assets/av/carl.png",
+                "image": "../../assets/av/carl-K.png",
                 "text": "Sure, absolutely. I'll see you around. Thanks.",
                 "extra": ""
             },
@@ -610,7 +744,15 @@ var AVDIALOGS = [
                 "speakerNumber": 1,
                 "speakerName": "Tina",
                 "image": "../../assets/av/tina.png",
-                "text": "So, a couple of years ago you were probably more enthusiastic about teaching in general and it showed, and you seemed more accessible. How open are you with students about the specific medical constraints you have to deal with?",
+                "text": "So, a couple of years ago you were probably more enthusiastic about teaching in general and it showed, and you seemed more accessible. ",
+                "extra": ""
+            },
+            {
+                "statementKey": "21a",
+                "speakerNumber": 1,
+                "speakerName": "Tina",
+                "image": "../../assets/av/tina.png",
+                "text": "How open are you with students about the specific medical constraints you have to deal with?",
                 "extra": ""
             },
             {
@@ -618,7 +760,15 @@ var AVDIALOGS = [
                 "speakerNumber": 2,
                 "speakerName": "Carl",
                 "image": "../../assets/av/carl.png",
-                "text": "Well, I assume students know that my disability affects my availability because my disability is visible. I don't go into depth about the bus scheduling or how hard it can be to get to campus because I don't want to complain in the classroom.",
+                "text": "Well, I assume students know that my disability affects my availability because my disability is visible.",
+                "extra": ""
+            },
+            {
+                "statementKey": "22a",
+                "speakerNumber": 2,
+                "speakerName": "Carl",
+                "image": "../../assets/av/carl.png",
+                "text": "I don't go into depth about the bus scheduling or how hard it can be to get to campus because I don't want to complain in the classroom.",
                 "extra": ""
             },
             {
@@ -626,7 +776,15 @@ var AVDIALOGS = [
                 "speakerNumber": 1,
                 "speakerName": "Tina",
                 "image": "../../assets/av/tina.png",
-                "text": "You could briefly address your disability in class and on the syllabus. Run what you say by your Chair or other colleagues first to see if there is way to state your condition and issues without whining. It would help everyone to discuss these issues openly and completely.",
+                "text": "You could briefly address your disability in class and on the syllabus. Run what you say by your Chair or other colleagues first to see if there is way to state your condition and issues without whining.",
+                "extra": ""
+            },
+            {
+                "statementKey": "23a",
+                "speakerNumber": 1,
+                "speakerName": "Tina",
+                "image": "../../assets/av/tina.png",
+                "text": "It would help everyone to discuss these issues openly and completely.",
                 "extra": ""
             },
             {
@@ -634,7 +792,15 @@ var AVDIALOGS = [
                 "speakerNumber": 2,
                 "speakerName": "Carl",
                 "image": "../../assets/av/carl.png",
-                "text": "Well, I don't want them to have pity on me, although maybe being clear about limitations would help. But I'm weary of approaching the chair about that again, because she seemed so aloof and indifferent before.",
+                "text": "Well, I don't want them to have pity on me, although maybe being clear about limitations would help. ",
+                "extra": ""
+            },
+            {
+                "statementKey": "24a",
+                "speakerNumber": 2,
+                "speakerName": "Carl",
+                "image": "../../assets/av/carl.png",
+                "text": "But I'm weary of approaching the chair about that again, because she seemed so aloof and indifferent before.",
                 "extra": ""
             },
             {
@@ -658,7 +824,15 @@ var AVDIALOGS = [
                 "speakerNumber": 1,
                 "speakerName": "Tina",
                 "image": "../../assets/av/tina.png",
-                "text": "Absolutely. A good place to start, before you even write the narrative, is to discuss new teaching strategies with your Chair or even other colleagues, including speaking openly with students. Students might be open to meeting elsewhere or other accommodations if they see the reason behind it. Then maybe your teaching scores would improve.",
+                "text": "Absolutely. A good place to start, before you even write the narrative, is to discuss new teaching strategies with your Chair or even other colleagues, including speaking openly with students. ",
+                "extra": ""
+            },
+            {
+                "statementKey": "27a",
+                "speakerNumber": 1,
+                "speakerName": "Tina",
+                "image": "../../assets/av/tina.png",
+                "text": "Students might be open to meeting elsewhere or other accommodations if they see the reason behind it. Then maybe your teaching scores would improve.",
                 "extra": ""
             },
             {
@@ -682,7 +856,15 @@ var AVDIALOGS = [
                 "speakerNumber": 1,
                 "speakerName": "Tina",
                 "image": "../../assets/av/tina.png",
-                "text": "Research comes first here, because this university expects its faculty to be first-class researchers above all. We are keen to increase our national reputation. Research and funding are critical. You must publish and present your work. What have you published so far?",
+                "text": "Research comes first here, because this university expects its faculty to be first-class researchers above all. We are keen to increase our national reputation. ",
+                "extra": ""
+            },
+            {
+                "statementKey": "30a",
+                "speakerNumber": 1,
+                "speakerName": "Tina",
+                "image": "../../assets/av/tina.png",
+                "text": "Research and funding are critical. You must publish and present your work. What have you published so far?",
                 "extra": ""
             },
             {
@@ -722,7 +904,15 @@ var AVDIALOGS = [
                 "speakerNumber": 2,
                 "speakerName": "Carl",
                 "image": "../../assets/av/carl.png",
-                "text": "I was appointed to a Presidential Commission. The Commission's main goal is to try to recruit and retain more students with disabilities into information technology. We're trying to formulate outreach efforts and to improve accessibility on campuses.",
+                "text": "I was appointed to a Presidential Commission. The Commission's main goal is to try to recruit and retain more students with disabilities into information technology. ",
+                "extra": ""
+            },
+            {
+                "statementKey": "35a",
+                "speakerNumber": 2,
+                "speakerName": "Carl",
+                "image": "../../assets/av/carl.png",
+                "text": "We're trying to formulate outreach efforts and to improve accessibility on campuses.",
                 "extra": ""
             },
             {
@@ -738,7 +928,15 @@ var AVDIALOGS = [
                 "speakerNumber": 2,
                 "speakerName": "Carl",
                 "image": "../../assets/av/carl.png",
-                "text": "Well, within computing, there are several panels that are trying to explore novel interdisciplinary approaches. My future projects include investigating health and assistive technologies. I will speak with or even to see if maybe there could be some avenue to follow.",
+                "text": "Well, within computing, there are several panels that are trying to explore novel interdisciplinary approaches. My future projects include investigating health and assistive technologies. ",
+                "extra": ""
+            },
+            {
+                "statementKey": "37a",
+                "speakerNumber": 2,
+                "speakerName": "Carl",
+                "image": "../../assets/av/carl.png",
+                "text": "I will speak with or even to see if maybe there could be some avenue to follow.",
                 "extra": ""
             },
             {
@@ -761,7 +959,7 @@ var AVDIALOGS = [
                 "statementKey": "40",
                 "speakerNumber": 1,
                 "speakerName": "Tina",
-                "image": "../../assets/av/tina.png",
+                "image": "../../assets/av/tina-A.png",
                 "text": "We are reviewing Carl’s preparations for submitting his dossier. Do you have tips to share?",
                 "extra": ""
             },
@@ -770,14 +968,22 @@ var AVDIALOGS = [
                 "speakerNumber": 4,
                 "speakerName": "Alex",
                 "image": "../../assets/av/alex.png",
-                "text": "Hmm, my big tip is that you should make sure to think about how people who don’t know your work would read it. Your work should be represented as accurately as possible. It can be a challenge to work on this stuff over and over again. Your eyes glaze over any mistakes. That’s why you have Tina here to help.",
+                "text": "Hmm, my big tip is that you should make sure to think about how people who don’t know your work would read it. Your work should be represented as accurately as possible. ",
+                "extra": ""
+            },
+            {
+                "statementKey": "41a",
+                "speakerNumber": 4,
+                "speakerName": "Alex",
+                "image": "../../assets/av/alex.png",
+                "text": "It can be a challenge to work on this stuff over and over again. Your eyes glaze over any mistakes. That’s why you have Tina here to help.",
                 "extra": ""
             },
             {
                 "statementKey": "42",
                 "speakerNumber": 2,
                 "speakerName": "Carl",
-                "image": "../../assets/av/carl.png",
+                "image": "../../assets/av/carl-A.png",
                 "text": "Yes, I'm glad she's able to look at things with fresh eyes. Should I have any additional reviewers or is she enough?",
                 "extra": ""
             },
@@ -793,7 +999,7 @@ var AVDIALOGS = [
                 "statementKey": "44",
                 "speakerNumber": 2,
                 "speakerName": "Carl",
-                "image": "../../assets/av/carl.png",
+                "image": "../../assets/av/carl-A.png",
                 "text": "What do you mean by contradictions and repetitions?",
                 "extra": ""
             },
@@ -802,22 +1008,38 @@ var AVDIALOGS = [
                 "speakerNumber": 4,
                 "speakerName": "Alex",
                 "image": "../../assets/av/alex.png",
-                "text": "Your cv and narrative need to be consistent and complement each other so that information in one doesn’t contradict or unnecessarily repeat what’s in the other. Your description of your research in your narrative should unfold from the factual listings in your cv.",
+                "text": "Your cv and narrative need to be consistent and complement each other so that information in one doesn’t contradict or unnecessarily repeat what’s in the other. ",
+                "extra": ""
+            },
+            {
+                "statementKey": "45a",
+                "speakerNumber": 4,
+                "speakerName": "Alex",
+                "image": "../../assets/av/alex.png",
+                "text": "Your description of your research in your narrative should unfold from the factual listings in your cv.",
                 "extra": ""
             },
             {
                 "statementKey": "46",
                 "speakerNumber": 1,
                 "speakerName": "Tina",
-                "image": "../../assets/av/tina.png",
-                "text": "That’s a great way to put it. Reviewers and committee members need to see the candidate’s past achievements and future trajectory of productivity as related and reasonably connected. The representations in the narrative and cv should work together so that readers understand the field you work in and your contributions to it.",
+                "image": "../../assets/av/tina-A.png",
+                "text": "That’s a great way to put it. Reviewers and committee members need to see the candidate’s past achievements and future trajectory of productivity as related and reasonably connected.",
+                "extra": ""
+            },
+            {
+                "statementKey": "46a",
+                "speakerNumber": 1,
+                "speakerName": "Tina",
+                "image": "../../assets/av/tina-A.png",
+                "text": "The representations in the narrative and cv should work together so that readers understand the field you work in and your contributions to it.",
                 "extra": ""
             },
             {
                 "statementKey": "47",
                 "speakerNumber": 2,
                 "speakerName": "Carl",
-                "image": "../../assets/av/carl.png",
+                "image": "../../assets/av/carl-A.png",
                 "text": "I had to work a long time on explaining in clear, accessible terms what my field is. Most people outside science and engineering don’t know what thermodynamics is much less understand formulas about heat transfer.",
                 "extra": ""
             },
@@ -833,8 +1055,16 @@ var AVDIALOGS = [
                 "statementKey": "49",
                 "speakerNumber": 1,
                 "speakerName": "Tina",
-                "image": "../../assets/av/tina.png",
-                "text": "Camille, we've been talking about putting together a package for tenure as Carl will be coming up soon. Carl, following up what Alex was saying describing your research in accessible terms, it's also important to set your work in the context of the goals of the institution.",
+                "image": "../../assets/av/tina-C.png",
+                "text": "Camille, we've been talking about putting together a package for tenure as Carl will be coming up soon. ",
+                "extra": ""
+            },
+            {
+                "statementKey": "49a",
+                "speakerNumber": 1,
+                "speakerName": "Tina",
+                "image": "../../assets/av/tina-C.png",
+                "text": "Carl, following up what Alex was saying describing your research in accessible terms, it's also important to set your work in the context of the goals of the institution.",
                 "extra": ""
             },
             {
@@ -842,15 +1072,38 @@ var AVDIALOGS = [
                 "speakerNumber": 5,
                 "speakerName": "Camille",
                 "image": "../../assets/av/camille.png",
-                "text": "Yes, now that I'm in the dean's office at our place, I have a better sense of how research areas converge. Since units and the institution have developed mission statements identifying areas of focus, it is important that each candidate's research areas be related to these missions.\n" +
-                    "The narrative should begin with a description of your field and how your work supports the unit's goals. This description helps identify you to colleagues in other units and colleagues who will see your dossier at other levels in the decision making process.",
+                "text": "Yes, now that I'm in the dean's office at our place, I have a better sense of how research areas converge.",
+                "extra": ""
+            },
+            {
+                "statementKey": "50a",
+                "speakerNumber": 5,
+                "speakerName": "Camille",
+                "image": "../../assets/av/camille.png",
+                "text": "Since units and the institution have developed mission statements identifying areas of focus, it is important that each candidate's research areas be related to these missions.",
+                "extra": ""
+            },
+            {
+                "statementKey": "50b",
+                "speakerNumber": 5,
+                "speakerName": "Camille",
+                "image": "../../assets/av/camille.png",
+                "text": "The narrative should begin with a description of your field and how your work supports the unit's goals. ",
+                "extra": ""
+            },
+            {
+                "statementKey": "50c",
+                "speakerNumber": 5,
+                "speakerName": "Camille",
+                "image": "../../assets/av/camille.png",
+                "text": "This description helps identify you to colleagues in other units and colleagues who will see your dossier at other levels in the decision making process.",
                 "extra": ""
             },
             {
                 "statementKey": "51",
                 "speakerNumber": 2,
                 "speakerName": "Carl",
-                "image": "../../assets/av/carl.png",
+                "image": "../../assets/av/carl-C.png",
                 "text": "Well, I will look carefully at our unit's mission statement so that I can best describe what I do. Can I quote it in my narrative?",
                 "extra": ""
             },
@@ -866,7 +1119,7 @@ var AVDIALOGS = [
                 "statementKey": "53",
                 "speakerNumber": 1,
                 "speakerName": "Tina",
-                "image": "../../assets/av/tina.png",
+                "image": "../../assets/av/tina-C.png",
                 "text": "The hard thing will be to make sure that my narrative is precise, comprehensive, and only three pages.",
                 "extra": ""
             },
@@ -875,15 +1128,30 @@ var AVDIALOGS = [
                 "speakerNumber": 5,
                 "speakerName": "Camille",
                 "image": "../../assets/av/camille.png",
-                "text": "And you should try to make it easy for the reader to see important information. Arrange the material topically and use fonts that show a hierarchy of topics. The outline of your argument, your story of career development and contributions, should be clear.\n" +
-                    "The document should flow. It should have a logical progression. I thought of my narrative as having a beginning, middle, and end that told the story of my career in documenting my professional accomplishments.\n",
+                "text": "And you should try to make it easy for the reader to see important information. Arrange the material topically and use fonts that show a hierarchy of topics. ",
+                "extra": ""
+            },
+            {
+                "statementKey": "54a",
+                "speakerNumber": 5,
+                "speakerName": "Camille",
+                "image": "../../assets/av/camille.png",
+                "text": "The outline of your argument, your story of career development and contributions, should be clear. The document should flow. It should have a logical progression. ",
+                "extra": ""
+            },
+            {
+                "statementKey": "54b",
+                "speakerNumber": 5,
+                "speakerName": "Camille",
+                "image": "../../assets/av/camille.png",
+                "text": "I thought of my narrative as having a beginning, middle, and end that told the story of my career in documenting my professional accomplishments.",
                 "extra": ""
             },
             {
                 "statementKey": "55",
                 "speakerNumber": 2,
                 "speakerName": "Carl",
-                "image": "../../assets/av/carl.png",
+                "image": "../../assets/av/carl-C.png",
                 "text": "Your whole career? I was planning to describe only significant accomplishments during the time I've been here.",
                 "extra": ""
             },
@@ -899,15 +1167,23 @@ var AVDIALOGS = [
                 "statementKey": "57",
                 "speakerNumber": 1,
                 "speakerName": "Tina",
-                "image": "../../assets/av/tina.png",
-                "text": "It is good if you set those accomplishments within the context of your career. That background of where you were educated and worked before, what you are doing now, and what you are planning to do constructs the beginning, middle, and end of the story.",
+                "image": "../../assets/av/tina-C.png",
+                "text": "It is good if you set those accomplishments within the context of your career. ",
+                "extra": ""
+            },
+            {
+                "statementKey": "57a",
+                "speakerNumber": 1,
+                "speakerName": "Tina",
+                "image": "../../assets/av/tina-C.png",
+                "text": "That background of where you were educated and worked before, what you are doing now, and what you are planning to do constructs the beginning, middle, and end of the story.",
                 "extra": ""
             },
             {
                 "statementKey": "58",
                 "speakerNumber": 2,
                 "speakerName": "Carl",
-                "image": "../../assets/av/carl.png",
+                "image": "../../assets/av/carl-C.png",
                 "text": "So I can mention what my future projects will be?",
                 "extra": ""
             },
@@ -923,7 +1199,7 @@ var AVDIALOGS = [
                 "statementKey": "60",
                 "speakerNumber": 1,
                 "speakerName": "Tina",
-                "image": "../../assets/av/tina.png",
+                "image": "../../assets/av/tina-C.png",
                 "text": "Even though you might not have planned out your career, your research, in logical order, someone who reads your narrative and looks at your vita should be able to see the connections that link projects together.",
                 "extra": ""
             },
@@ -931,15 +1207,23 @@ var AVDIALOGS = [
                 "statementKey": "61",
                 "speakerNumber": 2,
                 "speakerName": "Tina",
-                "image": "../../assets/av/tina.png",
-                "text": "Because it connects my career interests, that commission on disabilities has been rewarding to be part of, although corresponding with them, writing parts of reports, and traveling to occasional meetings takes a toll. Being on that commission has been time-consuming.",
+                "image": "../../assets/av/tina-C.png",
+                "text": "Because it connects my career interests, that commission on disabilities has been rewarding to be part of, although corresponding with them, writing parts of reports, and traveling to occasional meetings takes a toll.",
+                "extra": ""
+            },
+            {
+                "statementKey": "61a",
+                "speakerNumber": 2,
+                "speakerName": "Tina",
+                "image": "../../assets/av/tina-C.png",
+                "text": "Being on that commission has been time-consuming.",
                 "extra": ""
             },
             {
                 "statementKey": "62",
                 "speakerNumber": 1,
                 "speakerName": "Tina",
-                "image": "../../assets/av/tina.png",
+                "image": "../../assets/av/tina-C.png",
                 "text": "Even though it’s a lot of time, it’s worth doing because it spotlights your research and gives you a chance to impact public policy. The administration and your colleagues understand that.",
                 "extra": ""
             },
@@ -955,8 +1239,16 @@ var AVDIALOGS = [
                 "statementKey": "64",
                 "speakerNumber": 1,
                 "speakerName": "Tina",
-                "image": "../../assets/av/tina.png",
-                "text": "That’s two ways to beef up the teaching part of your dossier. First, you need to explain a range of teaching strategies that encourage student participation as part of your teaching portfolio. Second, you need to explain your work on the commission as having some impact on teaching pedagogies that others can employ.",
+                "image": "../../assets/av/tina-C.png",
+                "text": "That’s two ways to beef up the teaching part of your dossier. First, you need to explain a range of teaching strategies that encourage student participation as part of your teaching portfolio. ",
+                "extra": ""
+            },
+            {
+                "statementKey": "64a",
+                "speakerNumber": 1,
+                "speakerName": "Tina",
+                "image": "../../assets/av/tina-C.png",
+                "text": "Second, you need to explain your work on the commission as having some impact on teaching pedagogies that others can employ.",
                 "extra": ""
             },
             {
@@ -971,7 +1263,7 @@ var AVDIALOGS = [
                 "statementKey": "66",
                 "speakerNumber": 2,
                 "speakerName": "Carl",
-                "image": "../../assets/av/carl.png",
+                "image": "../../assets/av/carl-C.png",
                 "text": "An editor called, so I will have to turn to revising that article.",
                 "extra": ""
             },
@@ -1009,7 +1301,7 @@ var AVDIALOGS = [
 /***/ "../../../../../src/app/av/av-game.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-page\">\n  <div class=\"row left-panel-container\">\n    <div class=\"col-md-3 left-panel\">\n      <div class=\"left-panel-child\">\n        <a><img src=\"../../assets/av-logo.png\" class=\"logo\" (click)=\"openExitDialog()\"></a>\n        <hr class=\"hr-style\">\n\n        <div class=\"candidate-profile-header\">CANDIDATE PROFILE</div>\n        <div class=\"candidate-card\">\n          <div class=\"row\" *ngIf=\"candidate!=null\">\n            <div class=\"col-md-5\">\n              <img class=\"candidate-image\" [src]=\"candidate.image\">\n            </div>\n            <div class=\"col-md-7\">\n              <div class=\"candidate-name\">{{candidate.name}}</div>\n              <div class=\"candidate-short-desc\">{{candidate.short_desc}}</div>\n            </div>\n          </div>\n          <div class=\"row view-details-left\" *ngIf=\"candidate!=null\">\n            <div class=\"cv-card\" (click)=\"openCvDialog()\">\n              <div class=\"cv-heading\">\n                <span class=\"cv-heading-text\">View Curriculum Vita</span>\n              </div>\n              <div class=\"cv-snippet\">\n\n                <ul>\n                  <li>{{candidate.dossier.educational_background[0]}}</li>\n                  <li>{{candidate.dossier.educational_background[1]}}</li>\n                </ul>\n\n                <div style=\"float:right;padding-bottom: 10px; padding-right:10px;font-size: 13px;\"\n                     (click)=\"openCvDialog()\"><u>Read More..</u></div>\n\n\n              </div>\n            </div>\n          </div>\n          <div class=\"row view-details-left\" *ngIf=\"candidate!=null\">\n            <div class=\"cv-card\" (click)=\"openCasestudyDialog()\">\n              <div class=\"case-study-heading\">\n                <span class=\"case-study-heading-text\">View Case Study</span>\n              </div>\n              <div class=\"truncate\">\n                {{candidate.career_account[0]}}\n              </div>\n              <div style=\"float:right;padding-bottom: 10px; padding-right:10px;font-size: 13px;\"\n                   (click)=\"openCasestudyDialog()\"><u>Read More..</u></div>\n\n            </div>\n          </div>\n\n        </div>\n        <hr class=\"hr-style\">\n        <button class=\"back-to-main-page\" (click)=\"openExitDialog()\">\n          <span class=\"exit-activity-container\"><img class=\"exit-activity-icon\" src=\"./../../assets/left-arrow.svg\"\n          > &nbsp;Exit Activity</span>\n        </button>\n      </div>\n    </div>\n    <div class=\"col-md-9\">\n      <div class=\"right-panel\">\n        <div class=\"row\">\n          <div class=\"progress-bar-container\">\n            <mat-progress-bar mode=\"determinate\" value=\"{{progressValue}}\"></mat-progress-bar>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-7\">\n            <img style=\"height:550px;position:relative\" [src]=image>\n            <div style=\"position:absolute;top: 11%;left: 14%;right: 20%;\">{{currentDialog}}\n            </div>\n            <div class=\"control-panel\" style=\"position:absolute;bottom: 0%;\n    right: 10%;\">\n              <button\n                class=\"control-button\"\n                (click)=\"clickOnNextButton()\"><img\n                src=\"../../assets/right-arrow.png\" class=\"arrow-right\"></button>\n              <button *ngIf=\"counter>0\" class=\"control-button\" (click)=\"clickOnBackButton()\">\n                <img\n                  src=\"../../assets/left-arrow.png\" class=\"arrow-left\"></button>\n\n            </div>\n          </div>\n          <div *ngIf=\"dialogs!=null\" class=\"col-md-5\"\n               style=\" height:550px; background: #F6F6F6; font-size:16px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\">\n            <ul style=\"overflow: scroll;max-height:500px;list-style-type: none;margin-top:30px;padding-left:0px;\">\n              <li *ngFor=\"let conversation of conversationDone\">\n                <b><i>{{conversation.speakerName}}</i></b>: {{ conversation.text }}\n                <br>\n                <br>\n              </li>\n            </ul>\n            `\n          </div>\n        </div>\n\n\n      </div>\n    </div>\n    <div class=\"col-md-1 transcript\">\n\n    </div>\n  </div>\n</div>\n\n\n\n"
+module.exports = "<div class=\"main-page\">\n  <div class=\"row left-panel-container\">\n    <div class=\"col-md-3 left-panel\">\n      <div class=\"left-panel-child\">\n        <a><img src=\"../../assets/av-logo.png\" class=\"logo\" (click)=\"openExitDialog()\"></a>\n        <hr class=\"hr-style\">\n\n        <div class=\"candidate-profile-header\">CANDIDATE PROFILE</div>\n        <div class=\"candidate-card\">\n          <div class=\"row\" *ngIf=\"candidate!=null\">\n            <div class=\"col-md-5\">\n              <img class=\"candidate-image\" [src]=\"candidate.image\">\n            </div>\n            <div class=\"col-md-7\">\n              <div class=\"candidate-name\">{{candidate.name}}</div>\n              <div class=\"candidate-short-desc\">{{candidate.short_desc}}</div>\n            </div>\n          </div>\n          <div class=\"row view-details-left\" *ngIf=\"candidate!=null\">\n            <div class=\"cv-card\" (click)=\"openCvDialog()\">\n              <div class=\"cv-heading\">\n                <span class=\"cv-heading-text\">View Curriculum Vita</span>\n              </div>\n              <div class=\"cv-snippet\">\n\n                <ul>\n                  <li>{{candidate.dossier.educational_background[0]}}</li>\n                  <li>{{candidate.dossier.educational_background[1]}}</li>\n                </ul>\n\n                <div class=\"open-dialog\"\n                     (click)=\"openCvDialog()\"><u>Read More..</u></div>\n\n\n              </div>\n            </div>\n          </div>\n          <div class=\"row view-details-left\" *ngIf=\"candidate!=null\">\n            <div class=\"cv-card\" (click)=\"openCasestudyDialog()\">\n              <div class=\"case-study-heading\">\n                <span class=\"case-study-heading-text\">View Case Study</span>\n              </div>\n              <div class=\"truncate\">\n                {{candidate.career_account[0]}}\n              </div>\n              <div class=\"open-dialog\"\n                   (click)=\"openCasestudyDialog()\"><u>Read More..</u></div>\n\n            </div>\n          </div>\n\n        </div>\n        <hr class=\"hr-style\">\n        <button class=\"back-to-main-page\" (click)=\"openExitDialog()\">\n          <span class=\"exit-activity-container\"><img class=\"exit-activity-icon\" src=\"./../../assets/left-arrow.svg\"\n          > &nbsp;Exit Activity</span>\n        </button>\n      </div>\n    </div>\n    <div class=\"col-md-9\">\n      <div class=\"right-panel\">\n        <div class=\"row\">\n          <div class=\"progress-bar-container\">\n            <mat-progress-bar mode=\"determinate\" value=\"{{progressValue}}\"></mat-progress-bar>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-7\">\n            <img class=\"coffee-shop\" [src]=image>\n            <div class=\"coffee-shop-dialog\">{{currentDialog}}\n            </div>\n            <div class=\"control-panel\" style=\"position:absolute;bottom: 0%;\n    right: 10%;\">\n              <button\n                class=\"control-button\"\n                (click)=\"clickOnNextButton()\"><img\n                src=\"../../assets/right-arrow.png\" class=\"arrow-right\"></button>\n              <button *ngIf=\"counter>0\" class=\"control-button\" (click)=\"clickOnBackButton()\">\n                <img\n                  src=\"../../assets/left-arrow.png\" class=\"arrow-left\"></button>\n\n            </div>\n          </div>\n          <div id=\"messageBody\" *ngIf=\"dialogs!=null\" class=\"col-md-5 conversation-right-panel\">\n            <ul class=\"conversation-bullets\">\n              <li *ngFor=\"let conversation of conversationDone\">\n                <b><i>{{conversation.speakerName}}</i></b>: {{ conversation.text }}\n                <br>\n                <br>\n              </li>\n            </ul>\n            `\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-1 transcript\">\n\n    </div>\n  </div>\n</div>\n\n\n\n\n"
 
 /***/ }),
 
@@ -1021,11 +1313,11 @@ module.exports = "<div class=\"main-page\">\n  <div class=\"row left-panel-conta
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__simulated_meeting_casestudy_dialog_casestudy_dialog_component__ = __webpack_require__("../../../../../src/app/simulated-meeting/casestudy-dialog/casestudy-dialog.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__complete_activity_complete_activity_component__ = __webpack_require__("../../../../../src/app/complete-activity/complete-activity.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__exit_exit_component__ = __webpack_require__("../../../../../src/app/exit/exit-component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__simulated_meeting_cv_dialog_cv_dialog_component__ = __webpack_require__("../../../../../src/app/simulated-meeting/cv-dialog/cv-dialog.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_material_dialog__ = __webpack_require__("../../../material/esm5/dialog.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__av_game_service__ = __webpack_require__("../../../../../src/app/av/av-game.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__exit_exit_component__ = __webpack_require__("../../../../../src/app/exit/exit-component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__simulated_meeting_cv_dialog_cv_dialog_component__ = __webpack_require__("../../../../../src/app/simulated-meeting/cv-dialog/cv-dialog.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material_dialog__ = __webpack_require__("../../../material/esm5/dialog.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__av_game_service__ = __webpack_require__("../../../../../src/app/av/av-game.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__complete_av_complete_av_component__ = __webpack_require__("../../../../../src/app/complete-av/complete-av.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1085,7 +1377,7 @@ var AVDialogComponent = (function () {
     };
     AVDialogComponent.prototype.clickOnNextButton = function () {
         if (this.counter === this.dialogs.conversation.length - 1) {
-            this.openCompleteActivityDialog();
+            this.openCompleteAVActivityDialog();
         }
         else {
             this.createDialogList();
@@ -1106,24 +1398,19 @@ var AVDialogComponent = (function () {
         this.progressValue -= this.progressStep;
     };
     AVDialogComponent.prototype.openCvDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_5__simulated_meeting_cv_dialog_cv_dialog_component__["a" /* CvDialogComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_4__simulated_meeting_cv_dialog_cv_dialog_component__["a" /* CvDialogComponent */], {});
         var instance = dialogRef.componentInstance;
         instance.selectedCandidate = this.candidate;
     };
     AVDialogComponent.prototype.openExitDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_4__exit_exit_component__["a" /* ExitDialogComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__exit_exit_component__["a" /* ExitDialogComponent */], {});
         var instance = dialogRef.componentInstance;
         instance.activity = 3;
     };
-    AVDialogComponent.prototype.openCompleteActivityDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__complete_activity_complete_activity_component__["a" /* CompleteActivityDialogComponent */], { disableClose: true });
+    AVDialogComponent.prototype.openCompleteAVActivityDialog = function () {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_7__complete_av_complete_av_component__["a" /* CompleteAVActivityDialogComponent */], { disableClose: true });
         var instance = dialogRef.componentInstance;
-        /* this.dialogSequence.pop();
-         instance.completed = true;
-         instance.dialogSequence = this.dialogSequence;
-         instance.name = this.candidate.name;
-         instance.currentId = this.currentId;
-         instance.maxLength = this.dialogesForPanelist.conversation.length;*/
+        instance.conversation = this.conversationDone;
     };
     AVDialogComponent.prototype.openCasestudyDialog = function () {
         var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_2__simulated_meeting_casestudy_dialog_casestudy_dialog_component__["a" /* CaseStudyDialogComponent */], {});
@@ -1131,7 +1418,7 @@ var AVDialogComponent = (function () {
         instance.selectedCandidate = this.candidate;
     };
     AVDialogComponent.prototype.goBack = function () {
-        this.router.navigate(['/activities']);
+        this.router.navigate(['/activity']);
     };
     AVDialogComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -1140,7 +1427,7 @@ var AVDialogComponent = (function () {
             styles: [__webpack_require__("../../../../../src/app/av/av-dialog.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material_dialog__["b" /* MatDialog */], __WEBPACK_IMPORTED_MODULE_7__av_game_service__["a" /* AvGameService */]])
+            __WEBPACK_IMPORTED_MODULE_5__angular_material_dialog__["b" /* MatDialog */], __WEBPACK_IMPORTED_MODULE_6__av_game_service__["a" /* AvGameService */]])
     ], AVDialogComponent);
     return AVDialogComponent;
 }());
@@ -1343,6 +1630,74 @@ var CompleteActivityDialogComponent = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/complete-av/complete-av.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div>\n  <h2 mat-dialog-title style=\"display: inline\">Activity Complete</h2>\n</div>\n<hr>\n<mat-dialog-content>\n  <div>\n    Thanks for reading through this scenario that illustrates how positive mentoring works. You can review the\n    transcript for this activity before exiting.\n  </div>\n  <br>\n</mat-dialog-content>\n<div mat-dialog-actions>\n  <button class=\"dialog-actions\" mat-button cdkFocusInitial (click)=\"goBack()\">Exit Activity</button>\n  <button class=\"dialog-actions\" mat-button (click)=\"viewTranscript()\">View Transcript</button>\n\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/complete-av/complete-av.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CompleteAVActivityDialogComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__ = __webpack_require__("../../../material/esm5/dialog.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__av_transcript_av_transcript_component__ = __webpack_require__("../../../../../src/app/av-transcript/av-transcript.component.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+var CompleteAVActivityDialogComponent = (function () {
+    function CompleteAVActivityDialogComponent(dialogRef, data, router, route, dialog) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.dialog = dialog;
+        this.router = router;
+        this.route = route;
+    }
+    CompleteAVActivityDialogComponent.prototype.onNoClick = function () {
+        this.dialogRef.close();
+    };
+    CompleteAVActivityDialogComponent.prototype.viewTranscript = function () {
+        this.onNoClick();
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__av_transcript_av_transcript_component__["a" /* AVTranscriptComponent */], {});
+        var instance = dialogRef.componentInstance;
+        instance.conversation = this.conversation;
+    };
+    CompleteAVActivityDialogComponent.prototype.goBack = function () {
+        this.onNoClick();
+        this.router.navigate(['/activity']);
+    };
+    CompleteAVActivityDialogComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'complete-av',
+            template: __webpack_require__("../../../../../src/app/complete-av/complete-av.component.html")
+        }),
+        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])(__WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["d" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["b" /* MatDialog */]])
+    ], CompleteAVActivityDialogComponent);
+    return CompleteAVActivityDialogComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/exit/exit-component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1388,7 +1743,7 @@ var ExitDialogComponent = (function () {
             this.router.navigate(['/nyc']);
         }
         else if (this.activity == 3) {
-            this.router.navigate(['annotated-vita']);
+            this.router.navigate(['/activity']);
         }
     };
     ExitDialogComponent = __decorate([
@@ -8298,7 +8653,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/*\n.left-panel {\n  box-shadow: 0 4px 8px 0 rgba(164, 164, 164, 0.51), 0 6px 20px 0 rgba(164, 164, 164, 0.5);\n  padding-top: 20px;\n}\n.logo {\n  display: block;\n  margin: auto;\n}\n\n.sm-game {\n  font-size: 22px;\n}\n\n.header {\n  font-size: 20px;\n  font-weight: 700;\n  margin-top: 20px;\n}\n\n.candidate-name {\n  font-size: 16px;\n  font-weight: 700;\n  margin-top: 15px;\n  margin-bottom: 6px;\n}\n\n.candidate-short-desc {\n  font-size: 12px;\n  margin-top: 3px;\n}\n\n.right-panel {\n  max-width: 889px;\n  padding-left: 40px;\n  margin-top: 20px;\n}\n\n.activity-instruction {\n  font-size: 20px;\n}\n\n\n\n.choose-candidate-card {\n  margin-top: 12px;\n  background-color: #F5F5F5;\n  border-style: solid;\n  border-width: 8px;\n  border-color: white;\n}\n\n.choose-candidates {\n  margin-top: -15px;\n}\n\n.candidate-img {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  height: 80px;\n  width: 80px;\n}\n\n.details-case {\n  background-color: #F5F5F5;\n  margin-top: -30px;\n\n}\n\n.view-details-left {\n  background-color: white;\n  font-size: 8px;\n  margin-left: 15px;\n  margin-right: 15px;\n  padding-left: 0px;\n  padding-right: 0px;\n}\n\n.view-details {\n  background-color: white;\n  border-style: solid;\n  border-width: 8px;\n  border-color: #F5F5F5;\n  margin-top: 18px;\n  font-size: 12px;\n  margin-left: 15px;\n  padding-left: 0px;\n  padding-right: 0px;\n}\n\n.button-blue {\n  color: white;\n  font-size: 16px;\n  background-color: #0D3055;\n  margin-top: 10px;\n  text-align: center;\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.50), 0 2px 2px 0 rgba(0, 0, 0, 0.5);\n}\n\n.truncate {\n  !*white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  max-width: 200px;*!\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n  margin-bottom: 18px;\n}\n\n.example-radio-group {\n  display: inline-flex;\n  flex-direction: column;\n  font-size:16px;\n}\n\n.example-radio-button {\n  margin: 5px;\n  white-space:normal;\n}\n\n.example-selected-value {\n  margin: 15px 0;\n}\n\n.rotate{\n  vertical-align:top;\n  margin-top:23px;\n  transform:rotate(7deg);\n  -ms-transform:rotate(90deg); !* IE 9 *!\n  -moz-transform:rotate(90deg); !* Firefox *!\n  -webkit-transform:rotate(90deg); !* Safari and Chrome *!\n  -o-transform:rotate(90deg);\n}\n*/\n\n.main-page {\n  font-size: 16px;\n  min-height: 100%;\n}\n\n.main-page .header {\n  font-size: 20px;\n  font-weight: 700;\n  margin-top: 20px;\n}\n\n.main-page .candidate-name {\n  font-size: 16px;\n  font-weight: 700;\n  margin-top: 5px;\n  margin-bottom: 6px;\n}\n\n.main-page .candidate-short-desc {\n  font-size: 12px;\n  margin-top: 3px;\n  padding-bottom: 5px;\n}\n\n.right-panel {\n  max-width: 889px;\n  margin-left: 20px;\n  margin-top: 15px;\n  min-height: 100%;\n}\n\n.activity-instruction {\n  font-size: 20px;\n}\n\n.choose-candidate-card {\n  margin-top: 12px;\n  background-color: #F5F5F5;\n  border-style: solid;\n  border-width: 13px;\n  border-color: white;\n\n}\n\n.cv-card {\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n  transition: all 200ms ease-out;\n  width: 100%;\n}\n\n.cv-card:hover {\n  box-shadow: 0 0 10px #EFB211;\n  cursor: pointer;\n}\n\n.candidate-card {\n  margin-top: 10px;\n  background-color: #F5F5F5;\n  padding-top: 10px;\n  padding-bottom: 15px;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n  transition: all 200ms ease-out;\n}\n\n.other-panelists {\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n  transition: all 200ms ease-out;\n}\n\n.other-panelists:hover {\n  box-shadow: 0 0 10px #EFB211;\n  cursor: pointer;\n}\n\n.selected {\n  box-shadow: 0 0 10px #EFB211;\n}\n\n.choose-candidates {\n  margin-top: -15px;\n}\n\n.candidate-img {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  height: 80px;\n  width: 80px;\n}\n\n.details-case {\n  background-color: #F5F5F5;\n  margin-top: -30px;\n\n}\n\n.view-details-left {\n  background-color: white;\n  font-size: 8px;\n  margin-left: 15px;\n  margin-right: 15px;\n  padding-left: 0px;\n  padding-right: 0px;\n  margin-top: 12px;\n}\n\n.view-details {\n  background-color: white;\n  margin-top: 18px;\n  font-size: 12px;\n  margin-left: 48px;\n  padding-left: 0px;\n  padding-right: 0px;\n  transition: all 200ms ease-out;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n}\n\n.view-details:hover {\n  box-shadow: 0 0 10px #EFB211;\n  cursor: pointer;\n}\n\n.button-blue {\n  color: white;\n  font-size: 16px;\n  background-color: #0D3055;\n  margin-top: 10px;\n  text-align: center;\n}\n\n.truncate {\n  padding-left: 25px;\n  padding-right: 25px;\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n  margin-bottom: 18px;\n  margin-top: 18px;\n}\n\n.logo {\n  display: block;\n  margin: auto;\n}\n\n.left-panel {\n  box-shadow: 0 4px 8px 0 rgba(164, 164, 164, 0.51), 0 6px 20px 0 rgba(164, 164, 164, 0.5);\n  padding-top: 20px;\n  position: relative;\n}\n\n.back-to-main-page {\n  font-size: 16px;\n  font-weight: 400;\n  border-width: 1px;\n  border-color: black;\n  background-color: white;\n  border-radius: 0;\n  margin-bottom: 10px;\n  width: 100%;\n\n}\n\n.read-about-fellows {\n  margin-left: 15px;\n}\n\n.panelist-name {\n  margin-top: 34px;\n  font-size: 16px;\n  font-weight: 700;\n  margin-left: 10px;\n}\n\n.other-panelists {\n  background-color: white;\n  margin-left: 5px;\n  margin-right: 5px;\n  margin-top: 10px;\n  margin-bottom: 20px;\n}\n\n.play-game {\n  margin-top: 10px;\n  font-weight: 700;\n  background-color: #0D3055;\n  color: #ffffff;\n  text-transform: uppercase;\n  font-size: 16px;\n  border-radius: 5px;\n  height: 34px; /* Safari */\n  transition-duration: 0.4s;\n  float: right;\n  margin-bottom: 10px;\n}\n\n.submit {\n  font-weight: 700;\n  background-color: #0D3055;\n  color: #ffffff;\n  text-transform: uppercase;\n  font-size: 16px;\n  border-radius: 5px; /* Safari */\n  transition-duration: 0.4s;\n}\n\n.submit:hover {\n  background-color: #EFB211; /* Green */\n  color: white;\n  cursor: pointer;\n}\n\n.play-game:hover {\n  background-color: #EFB211; /* Green */\n  color: white;\n  cursor: pointer;\n}\n\n.shadow {\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n}\n\n.control-button {\n  float: right;\n  background-color: #0D3055;\n  height: 40px;\n\n}\n\n.control-button:hover {\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n}\n\n.control-panel {\n  height: 85px;\n  margin-top: 20px;\n  margin-bottom: 20px;\n  padding: 5px;\n  background-color: #F5F5F5;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n}\n\n.progress-bar-container {\n  padding: 8px 2px 13px 2px;\n  height: 20px;\n  margin-bottom: 10px;\n  background-color: #f5f5f5;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n}\n\n.panel-dialog {\n  position: absolute;\n  top: 11%;\n  left: 8%;\n  font-size: 16px;\n  width: 87%;\n}\n\n.transcript {\n  font-size: 20px;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  color: white;\n}\n\n.logo:hover {\n  cursor: pointer;\n}\n\n.back-to-main-page:hover {\n  cursor: pointer;\n}\n\n.left-panel-container {\n  width: 100%;\n  min-height: 640px;\n}\n\n.left-panel-child {\n  margin-left: 30px;\n  margin-right: 20px;\n}\n\n.hr-style {\n  margin-top: 20px;\n}\n\n.candidate-profile-header {\n  margin-top: 10px;\n  text-align: center;\n  font-weight: 700;\n}\n\n.candidate-image {\n  padding-left: 15px;\n  width: 100px;\n}\n\n.cv-heading {\n  background-color: #0D3055;\n  width: 100%;\n  padding-left: 10px;\n}\n\n.cv-heading-text {\n  color: white;\n  font-size: 16px;\n  text-align: center;\n}\n\n.cv-snippet {\n  margin-top: 18px;\n}\n\n.case-study-heading {\n  background-color: #EFB211;\n  width: 100%;\n  padding-left: 10px;\n}\n\n.case-study-heading-text {\n  color: white;\n  font-size: 16px;\n  text-align: center;\n}\n\n.exit-activity-container {\n  color: black;\n  text-align: center;\n}\n\n.exit-activity-icon {\n  width: 24px;\n  height: 24px;\n}\n\n.panelist-image {\n  width: 100%;\n  position: relative\n}\n\n.arrow-right {\n  padding: 5px;\n  width: 24px;\n}\n\n.arrow-left {\n  padding: 5px;\n  width: 24px;\n}\n\n.options-container {\n  height: 35%;\n  background-color: #F6F6F6;\n  margin-top: 20px;\n  margin-bottom: 20px;\n  display: block;\n  -webkit-box-align: end;\n      -ms-flex-align: end;\n          align-items: flex-end;\n  padding-top: 2px;\n  padding-left: 10px;\n}\n\n.options-container-text {\n  font-size: 17px;\n  font-weight: 700;\n  margin-bottom: 10px;\n  margin-top: 10px;\n}\n\n.submit-button-container {\n  margin-top: 5px;\n  margin-bottom: 15px;\n}\n\n.transcript-button {\n  width: auto;\n  height: auto;\n  background-color: #0D3055;\n  cursor: pointer;\n}\n\n.error {\n  margin-top: 10px;\n}\n\n.warning-icon {\n  width: 16px;\n}\n\n.transcript-link {\n  color: #0F3153;\n  float: right;\n}\n\n.transcript-link:hover {\n  cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "/*\n.left-panel {\n  box-shadow: 0 4px 8px 0 rgba(164, 164, 164, 0.51), 0 6px 20px 0 rgba(164, 164, 164, 0.5);\n  padding-top: 20px;\n}\n.logo {\n  display: block;\n  margin: auto;\n}\n\n.sm-game {\n  font-size: 22px;\n}\n\n.header {\n  font-size: 20px;\n  font-weight: 700;\n  margin-top: 20px;\n}\n\n.candidate-name {\n  font-size: 16px;\n  font-weight: 700;\n  margin-top: 15px;\n  margin-bottom: 6px;\n}\n\n.candidate-short-desc {\n  font-size: 12px;\n  margin-top: 3px;\n}\n\n.right-panel {\n  max-width: 889px;\n  padding-left: 40px;\n  margin-top: 20px;\n}\n\n.activity-instruction {\n  font-size: 20px;\n}\n\n\n\n.choose-candidate-card {\n  margin-top: 12px;\n  background-color: #F5F5F5;\n  border-style: solid;\n  border-width: 8px;\n  border-color: white;\n}\n\n.choose-candidates {\n  margin-top: -15px;\n}\n\n.candidate-img {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  height: 80px;\n  width: 80px;\n}\n\n.details-case {\n  background-color: #F5F5F5;\n  margin-top: -30px;\n\n}\n\n.view-details-left {\n  background-color: white;\n  font-size: 8px;\n  margin-left: 15px;\n  margin-right: 15px;\n  padding-left: 0px;\n  padding-right: 0px;\n}\n\n.view-details {\n  background-color: white;\n  border-style: solid;\n  border-width: 8px;\n  border-color: #F5F5F5;\n  margin-top: 18px;\n  font-size: 12px;\n  margin-left: 15px;\n  padding-left: 0px;\n  padding-right: 0px;\n}\n\n.button-blue {\n  color: white;\n  font-size: 16px;\n  background-color: #0D3055;\n  margin-top: 10px;\n  text-align: center;\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.50), 0 2px 2px 0 rgba(0, 0, 0, 0.5);\n}\n\n.truncate {\n  !*white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  max-width: 200px;*!\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n  margin-bottom: 18px;\n}\n\n.example-radio-group {\n  display: inline-flex;\n  flex-direction: column;\n  font-size:16px;\n}\n\n.example-radio-button {\n  margin: 5px;\n  white-space:normal;\n}\n\n.example-selected-value {\n  margin: 15px 0;\n}\n\n.rotate{\n  vertical-align:top;\n  margin-top:23px;\n  transform:rotate(7deg);\n  -ms-transform:rotate(90deg); !* IE 9 *!\n  -moz-transform:rotate(90deg); !* Firefox *!\n  -webkit-transform:rotate(90deg); !* Safari and Chrome *!\n  -o-transform:rotate(90deg);\n}\n*/\n\n.main-page {\n  font-size: 16px;\n  min-height: 100%;\n}\n\n.main-page .header {\n  font-size: 20px;\n  font-weight: 700;\n  margin-top: 20px;\n}\n\n.main-page .candidate-name {\n  font-size: 16px;\n  font-weight: 700;\n  margin-top: 5px;\n  margin-bottom: 6px;\n}\n\n.main-page .candidate-short-desc {\n  font-size: 12px;\n  margin-top: 3px;\n  padding-bottom: 5px;\n}\n\n.right-panel {\n  max-width: 889px;\n  margin-left: 20px;\n  margin-top: 15px;\n  min-height: 100%;\n}\n\n.activity-instruction {\n  font-size: 20px;\n}\n\n.choose-candidate-card {\n  margin-top: 12px;\n  background-color: #F5F5F5;\n  border-style: solid;\n  border-width: 13px;\n  border-color: white;\n\n}\n\n.cv-card {\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n  transition: all 200ms ease-out;\n  width: 100%;\n}\n\n.cv-card:hover {\n  box-shadow: 0 0 10px #EFB211;\n  cursor: pointer;\n}\n\n.candidate-card {\n  margin-top: 10px;\n  background-color: #F5F5F5;\n  padding-top: 10px;\n  padding-bottom: 15px;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n  transition: all 200ms ease-out;\n}\n\n.other-panelists {\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n  transition: all 200ms ease-out;\n}\n\n.other-panelists:hover {\n  box-shadow: 0 0 10px #EFB211;\n  cursor: pointer;\n}\n\n.selected {\n  box-shadow: 0 0 10px #EFB211;\n}\n\n.choose-candidates {\n  margin-top: -15px;\n}\n\n.candidate-img {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  height: 80px;\n  width: 80px;\n}\n\n.details-case {\n  background-color: #F5F5F5;\n  margin-top: -30px;\n\n}\n\n.view-details-left {\n  background-color: white;\n  font-size: 8px;\n  margin-left: 15px;\n  margin-right: 15px;\n  padding-left: 0px;\n  padding-right: 0px;\n  margin-top: 12px;\n}\n\n.view-details {\n  background-color: white;\n  margin-top: 18px;\n  font-size: 12px;\n  margin-left: 48px;\n  padding-left: 0px;\n  padding-right: 0px;\n  transition: all 200ms ease-out;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n}\n\n.view-details:hover {\n  box-shadow: 0 0 10px #EFB211;\n  cursor: pointer;\n}\n\n.button-blue {\n  color: white;\n  font-size: 16px;\n  background-color: #0D3055;\n  margin-top: 10px;\n  text-align: center;\n}\n\n.truncate {\n  padding-left: 25px;\n  padding-right: 25px;\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n  margin-bottom: 18px;\n  margin-top: 18px;\n}\n\n.logo {\n  display: block;\n  margin: auto;\n}\n\n.left-panel {\n  box-shadow: 0 4px 8px 0 rgba(164, 164, 164, 0.51), 0 6px 20px 0 rgba(164, 164, 164, 0.5);\n  padding-top: 20px;\n  position: relative;\n}\n\n.back-to-main-page {\n  font-size: 16px;\n  font-weight: 400;\n  border-width: 1px;\n  border-color: black;\n  background-color: white;\n  border-radius: 0;\n  margin-bottom: 10px;\n  width: 100%;\n\n}\n\n.read-about-fellows {\n  margin-left: 15px;\n}\n\n.panelist-name {\n  margin-top: 34px;\n  font-size: 16px;\n  font-weight: 700;\n  margin-left: 10px;\n}\n\n.other-panelists {\n  background-color: white;\n  margin-left: 5px;\n  margin-right: 5px;\n  margin-top: 10px;\n  margin-bottom: 20px;\n}\n\n.play-game {\n  margin-top: 10px;\n  font-weight: 700;\n  background-color: #0D3055;\n  color: #ffffff;\n  text-transform: uppercase;\n  font-size: 16px;\n  border-radius: 5px;\n  height: 34px; /* Safari */\n  transition-duration: 0.4s;\n  float: right;\n  margin-bottom: 10px;\n}\n\n.submit {\n  font-weight: 700;\n  background-color: #0D3055;\n  color: #ffffff;\n  text-transform: uppercase;\n  font-size: 16px;\n  border-radius: 5px; /* Safari */\n  transition-duration: 0.4s;\n}\n\n.submit:hover {\n  background-color: #EFB211; /* Green */\n  color: white;\n  cursor: pointer;\n}\n\n.play-game:hover {\n  background-color: #EFB211; /* Green */\n  color: white;\n  cursor: pointer;\n}\n\n.shadow {\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n}\n\n.control-button {\n  float: right;\n  background-color: #0D3055;\n  height: 40px;\n\n}\n\n.control-button:hover {\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n}\n\n.control-panel {\n  height: 85px;\n  margin-top: 20px;\n  margin-bottom: 20px;\n  padding: 5px;\n  background-color: #F5F5F5;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n}\n\n.progress-bar-container {\n  padding: 8px 2px 13px 2px;\n  height: 20px;\n  margin-bottom: 10px;\n  background-color: #f5f5f5;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);\n}\n\n.panel-dialog {\n  position: absolute;\n  top: 11%;\n  left: 8%;\n  font-size: 16px;\n  width: 86%;\n}\n\n.transcript {\n  font-size: 20px;\n  -webkit-writing-mode: vertical-rl;\n      -ms-writing-mode: tb-rl;\n          writing-mode: vertical-rl;\n  text-align: center;\n  color: white;\n}\n\n.logo:hover {\n  cursor: pointer;\n}\n\n.back-to-main-page:hover {\n  cursor: pointer;\n}\n\n.left-panel-container {\n  width: 100%;\n  min-height: 640px;\n}\n\n.left-panel-child {\n  margin-left: 30px;\n  margin-right: 20px;\n}\n\n.hr-style {\n  margin-top: 20px;\n}\n\n.candidate-profile-header {\n  margin-top: 10px;\n  text-align: center;\n  font-weight: 700;\n}\n\n.candidate-image {\n  padding-left: 15px;\n  width: 100px;\n}\n\n.cv-heading {\n  background-color: #0D3055;\n  width: 100%;\n  padding-left: 10px;\n}\n\n.cv-heading-text {\n  color: white;\n  font-size: 16px;\n  text-align: center;\n}\n\n.cv-snippet {\n  margin-top: 18px;\n}\n\n.case-study-heading {\n  background-color: #EFB211;\n  width: 100%;\n  padding-left: 10px;\n}\n\n.case-study-heading-text {\n  color: white;\n  font-size: 16px;\n  text-align: center;\n}\n\n.exit-activity-container {\n  color: black;\n  text-align: center;\n}\n\n.exit-activity-icon {\n  width: 24px;\n  height: 24px;\n}\n\n.panelist-image {\n  width: 100%;\n  position: relative\n}\n\n.arrow-right {\n  padding: 5px;\n  width: 24px;\n}\n\n.arrow-left {\n  padding: 5px;\n  width: 24px;\n}\n\n.options-container {\n  height: 35%;\n  background-color: #F6F6F6;\n  margin-top: 20px;\n  margin-bottom: 20px;\n  display: block;\n  -webkit-box-align: end;\n      -ms-flex-align: end;\n          align-items: flex-end;\n  padding-top: 2px;\n  padding-left: 10px;\n}\n\n.options-container-text {\n  font-size: 17px;\n  font-weight: 700;\n  margin-bottom: 10px;\n  margin-top: 10px;\n}\n\n.submit-button-container {\n  margin-top: 5px;\n  margin-bottom: 15px;\n}\n\n.transcript-button {\n  width: auto;\n  height: auto;\n  background-color: #0D3055;\n  cursor: pointer;\n}\n\n.error {\n  margin-top: 10px;\n}\n\n.warning-icon {\n  width: 16px;\n}\n\n.transcript-link {\n  color: #0F3153;\n  float: right;\n}\n\n.transcript-link:hover {\n  cursor: pointer;\n}\n", ""]);
 
 // exports
 
