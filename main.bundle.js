@@ -1120,7 +1120,7 @@ var AVDIALOGS = [
                 "speakerNumber": 1,
                 "speakerName": "Tina",
                 "image": "../../assets/av/tina-C.png",
-                "text": "The hard thing will be to make sure that my narrative is precise, comprehensive, and only three pages.",
+                "text": "The hard thing will be to make sure that your narrative is precise, comprehensive, and only five pages.",
                 "extra": ""
             },
             {
@@ -1296,24 +1296,24 @@ var AVDIALOGS = [
                 "committee_id": 1,
                 "name": "Tina Androtti",
                 "image": "../../../assets/Tina_small.png",
-                "description": "Tina is a senior faculty member in the Computer Science department. She has agreed to mentor Carl in his academic decisions and work while he works towards a promotion and tenure"
+                "description": "Tina is a senior faculty member in the Computer Science department. She has agreed to mentor Carl in his academic decisions and work while he works towards a promotion and tenure."
             },
             {
                 "committee_id": 2,
                 "name": "Alex Bettor",
                 "image": "../../../assets/alex_small.png",
-                "description": "Alex is Carl's colleague in engineering who was recently promoted and tenured"
+                "description": "Alex is Carl's colleague in engineering who was recently promoted and tenured."
             },
             {
                 "committee_id": 3,
                 "name": "Camille Danton",
                 "image": "../../../assets/camille_small.png",
-                "description": "cCamille Danton is an acquaintance and colleague of Carl and Tina. She works in the computer science department at another institution"
+                "description": "Camille Danton is an acquaintance and colleague of Carl and Tina. She works in the computer science department at another institution."
             }, {
                 "committee_id": 4,
                 "name": "Katie Kusuma",
                 "image": "../../../assets/katie_small.png",
-                "description": "Katie is a former student of Carl's. She is currently in her junior year at college"
+                "description": "Katie is a former student of Carl's. She is currently in her junior year at college."
             }]
     }
 ];
