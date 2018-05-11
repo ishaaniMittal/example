@@ -8922,7 +8922,7 @@ var SimulatedMeetingComponent = (function () {
         }
     };
     SimulatedMeetingComponent.prototype.openTranscriptDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_9__transcript_sm_transcript_component__["a" /* SimulatedMeetingTranscriptComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_9__transcript_sm_transcript_component__["a" /* SimulatedMeetingTranscriptComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.dialogSequence = this.dialogSequence;
         instance.name = this.candidate.name;
