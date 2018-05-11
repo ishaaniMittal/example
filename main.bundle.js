@@ -1422,22 +1422,22 @@ var AVDialogComponent = (function () {
         this.progressValue -= this.progressStep;
     };
     AVDialogComponent.prototype.openCvDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_4__simulated_meeting_cv_dialog_cv_dialog_component__["a" /* CvDialogComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_4__simulated_meeting_cv_dialog_cv_dialog_component__["a" /* CvDialogComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.selectedCandidate = this.candidate;
     };
     AVDialogComponent.prototype.openExitDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__exit_exit_component__["a" /* ExitDialogComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__exit_exit_component__["a" /* ExitDialogComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.activity = 3;
     };
     AVDialogComponent.prototype.openCompleteAVActivityDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_7__complete_av_complete_av_component__["a" /* CompleteAVActivityDialogComponent */], { disableClose: true });
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_7__complete_av_complete_av_component__["a" /* CompleteAVActivityDialogComponent */], { disableClose: true, position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.conversation = this.conversationDone;
     };
     AVDialogComponent.prototype.openCasestudyDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_2__simulated_meeting_casestudy_dialog_casestudy_dialog_component__["a" /* CaseStudyDialogComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_2__simulated_meeting_casestudy_dialog_casestudy_dialog_component__["a" /* CaseStudyDialogComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.selectedCandidate = this.candidate;
     };
@@ -1445,7 +1445,7 @@ var AVDialogComponent = (function () {
         this.router.navigate(['/activity']);
     };
     AVDialogComponent.prototype.openPanelistBio = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_8__simulated_meeting_panelist_dialog_panelist_dialog_component__["a" /* PanelistDialogComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_8__simulated_meeting_panelist_dialog_panelist_dialog_component__["a" /* PanelistDialogComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.committee_members = this.dialogs.committee_members;
         instance.title = "Characters";
@@ -1632,7 +1632,7 @@ var CompleteActivityDialogComponent = (function () {
     };
     CompleteActivityDialogComponent.prototype.viewTranscript = function () {
         this.onNoClick();
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__simulated_meeting_game_transcript_sm_transcript_component__["a" /* SimulatedMeetingTranscriptComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__simulated_meeting_game_transcript_sm_transcript_component__["a" /* SimulatedMeetingTranscriptComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.dialogSequence = this.dialogSequence;
         instance.name = this.name;
@@ -1704,7 +1704,7 @@ var CompleteAVActivityDialogComponent = (function () {
     };
     CompleteAVActivityDialogComponent.prototype.viewTranscript = function () {
         this.onNoClick();
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__av_transcript_av_transcript_component__["a" /* AVTranscriptComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__av_transcript_av_transcript_component__["a" /* AVTranscriptComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.conversation = this.conversation;
     };
@@ -1898,7 +1898,7 @@ var FinalDialog = (function () {
     FinalDialog.prototype.openTranscriptDialog = function () {
         console.log("im here", this.counter);
         this.dialogRef.close();
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__transcript_nyc_transcript_component__["a" /* NYCTranscriptComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__transcript_nyc_transcript_component__["a" /* NYCTranscriptComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.questions = this.questions;
         instance.name = this.name;
@@ -2131,7 +2131,7 @@ var NYCComponent = (function () {
     };
     NYCComponent.prototype.openExplanationDialog = function () {
         var _this = this;
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_8__explanationDialog_explanation_dialog_component__["a" /* ExplanationDialog */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_8__explanationDialog_explanation_dialog_component__["a" /* ExplanationDialog */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.explanation = this.selectedPersonTenQuestions[this.counter].response;
         dialogRef.afterClosed().subscribe(function (result) {
@@ -2141,26 +2141,26 @@ var NYCComponent = (function () {
         });
     };
     NYCComponent.prototype.openFinalDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_9__final_dialog_final_dialog_component__["a" /* FinalDialog */], { disableClose: true });
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_9__final_dialog_final_dialog_component__["a" /* FinalDialog */], { disableClose: true, position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.questions = this.selectedPersonTenQuestions.slice(0, 10);
         instance.name = this.selectedPerson.name;
         instance.counter = this.counter;
     };
     NYCComponent.prototype.openTranscriptDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_6__transcript_nyc_transcript_component__["a" /* NYCTranscriptComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_6__transcript_nyc_transcript_component__["a" /* NYCTranscriptComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.questions = this.selectedPersonTenQuestions.slice(0, this.counter);
         instance.counter = this.counter;
         instance.name = this.selectedPerson.name;
     };
     NYCComponent.prototype.openExitDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_7__exit_exit_component__["a" /* ExitDialogComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_7__exit_exit_component__["a" /* ExitDialogComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.activity = 2;
     };
     NYCComponent.prototype.openCasestudyDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_5__simulated_meeting_casestudy_dialog_casestudy_dialog_component__["a" /* CaseStudyDialogComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_5__simulated_meeting_casestudy_dialog_casestudy_dialog_component__["a" /* CaseStudyDialogComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.selectedCandidate = this.candidate;
     };
@@ -4946,17 +4946,17 @@ var NYCMainPageComponent = (function () {
         this.getCandidates();
     };
     NYCMainPageComponent.prototype.openCvDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_5__simulated_meeting_cv_dialog_cv_dialog_component__["a" /* CvDialogComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_5__simulated_meeting_cv_dialog_cv_dialog_component__["a" /* CvDialogComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.selectedCandidate = this.selectedCandidate;
     };
     NYCMainPageComponent.prototype.openCasestudyDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_6__simulated_meeting_casestudy_dialog_casestudy_dialog_component__["a" /* CaseStudyDialogComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_6__simulated_meeting_casestudy_dialog_casestudy_dialog_component__["a" /* CaseStudyDialogComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.selectedCandidate = this.selectedCandidate;
     };
     NYCMainPageComponent.prototype.openDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_4__simulated_meeting_panelist_dialog_panelist_dialog_component__["a" /* PanelistDialogComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_4__simulated_meeting_panelist_dialog_panelist_dialog_component__["a" /* PanelistDialogComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.committee_members = this.selectedCandidate.committee_members;
     };
@@ -8930,23 +8930,26 @@ var SimulatedMeetingComponent = (function () {
         instance.maxLength = this.dialogesForPanelist.conversation.length;
     };
     SimulatedMeetingComponent.prototype.openPanelistBio = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_8__panelist_dialog_panelist_dialog_component__["a" /* PanelistDialogComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_8__panelist_dialog_panelist_dialog_component__["a" /* PanelistDialogComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.committee_members = this.candidate.committee_members;
         instance.title = "Committee Members";
     };
     SimulatedMeetingComponent.prototype.openCvDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_5__cv_dialog_cv_dialog_component__["a" /* CvDialogComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_5__cv_dialog_cv_dialog_component__["a" /* CvDialogComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.selectedCandidate = this.candidate;
     };
     SimulatedMeetingComponent.prototype.openExitDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_10__exit_exit_component__["a" /* ExitDialogComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_10__exit_exit_component__["a" /* ExitDialogComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.activity = 1;
     };
     SimulatedMeetingComponent.prototype.openCompleteActivityDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_11__complete_activity_complete_activity_component__["a" /* CompleteActivityDialogComponent */], { disableClose: true });
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_11__complete_activity_complete_activity_component__["a" /* CompleteActivityDialogComponent */], {
+            disableClose: true,
+            position: { top: '10px' }
+        });
         var instance = dialogRef.componentInstance;
         this.dialogSequence.pop();
         instance.completed = true;
@@ -8956,7 +8959,7 @@ var SimulatedMeetingComponent = (function () {
         instance.maxLength = this.dialogesForPanelist.conversation.length;
     };
     SimulatedMeetingComponent.prototype.openCasestudyDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_7__casestudy_dialog_casestudy_dialog_component__["a" /* CaseStudyDialogComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_7__casestudy_dialog_casestudy_dialog_component__["a" /* CaseStudyDialogComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.selectedCandidate = this.candidate;
     };
@@ -9408,17 +9411,17 @@ var MainPageComponent = (function () {
         this.getCandidates();
     };
     MainPageComponent.prototype.openCvDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_5__cv_dialog_cv_dialog_component__["a" /* CvDialogComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_5__cv_dialog_cv_dialog_component__["a" /* CvDialogComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.selectedCandidate = this.selectedCandidate;
     };
     MainPageComponent.prototype.openCasestudyDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_6__casestudy_dialog_casestudy_dialog_component__["a" /* CaseStudyDialogComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_6__casestudy_dialog_casestudy_dialog_component__["a" /* CaseStudyDialogComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.selectedCandidate = this.selectedCandidate;
     };
     MainPageComponent.prototype.openDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_4__panelist_dialog_panelist_dialog_component__["a" /* PanelistDialogComponent */], {});
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_4__panelist_dialog_panelist_dialog_component__["a" /* PanelistDialogComponent */], { position: { top: '10px' } });
         var instance = dialogRef.componentInstance;
         instance.committee_members = this.selectedCandidate.committee_members;
         instance.title = "Committee Members";
